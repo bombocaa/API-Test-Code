@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/booking/{{bookingId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Booking is retrieved', function () { pm.response.to.have.status(200); });
+      const body = pm.response.json();
+      pm.test('Retrieved booking has the updated values', function () { pm.expect(body.firstname).to.eql('Updated Guest'); pm.expect(body.totalprice).to.eql(200); pm.expect(body.additionalneeds).to.eql('Breakfast and late checkout'); });
+    language: text/javascript
+order: 5000

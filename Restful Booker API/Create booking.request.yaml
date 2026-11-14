@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{baseUrl}}/booking"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "firstname": "Playwright",
+      "lastname": "API Test",
+      "totalprice": 175,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2027-06-10",
+        "checkout": "2027-06-15"
+      },
+      "additionalneeds": "Breakfast"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Booking is created', function () { pm.response.to.have.status(200); });
+      const body = pm.response.json();
+      pm.test('Response includes booking ID and details', function () { pm.expect(body.bookingid).to.be.a('number'); pm.expect(body.booking).to.be.an('object'); });
+      if (body.bookingid) pm.collectionVariables.set('bookingId', body.bookingid);
+    language: text/javascript
+order: 2000

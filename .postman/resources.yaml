@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 4c3c88b8-3bf7-4663-8300-58939ad1ce19
+
+localResources:
+  collections:
+    - ../Restful Booker API
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../Restful Booker API: 8c812ad3-366c-4c23-9a71-6aa290901bb5

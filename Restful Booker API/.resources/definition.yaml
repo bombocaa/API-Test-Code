@@ -1,0 +1,6 @@
+$kind: collection
+description: A runnable create, update, retrieve, and delete booking workflow for https://restful-booker.herokuapp.com. Run requests in order. The auth request saves the token, and the create request saves the booking ID for later requests.
+variables:
+  baseUrl: https://restful-booker.herokuapp.com
+  token: ""
+  bookingId: ""

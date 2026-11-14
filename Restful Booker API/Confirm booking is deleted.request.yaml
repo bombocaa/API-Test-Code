@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/booking/{{bookingId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Deleted booking returns 404', function () { pm.response.to.have.status(404); });
+      pm.collectionVariables.unset('bookingId');
+      pm.collectionVariables.unset('token');
+    language: text/javascript
+order: 7000

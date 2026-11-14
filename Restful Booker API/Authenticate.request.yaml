@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/auth"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "admin",
+      "password": "password123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Authentication succeeds', function () { pm.response.to.have.status(200); });
+      const body = pm.response.json();
+      pm.test('Response includes a token', function () { pm.expect(body.token).to.be.a('string'); });
+      if (body.token) pm.collectionVariables.set('token', body.token);
+    language: text/javascript
+order: 1000
