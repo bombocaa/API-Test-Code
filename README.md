@@ -4,7 +4,7 @@ Run from the project root after installing dependencies:
 
 ```sh
 npm install
-npm run test:part3
+npm run test
 ```
 
 Set `API_BASE_URL` to use another environment. The default is `https://restful-booker.herokuapp.com`.
